@@ -1,0 +1,39 @@
+'''Написать программу на Python3, которая сначал а запрашивает положительное число-основание
+системы счисления, затем два числа в системе счисления с этим основанием, и потом четвертое
+число-основание системы счисления, в которой надо вывести результат. В ходе  выполнения
+программа возвращает результат сложения двух чисел в требуемой системе счисления.  Нельзя
+использовать для перевода функцию int().'''
+
+
+base = int(input("Введите основание системы счисления: "))
+number1 = int(input("Введите первое число: "))
+number2 = int(input("Введите второе число: "))
+result_base = int(input("Введите основание системы счисления для результата: "))
+def to_decimal(number, base):
+    decimal = 0
+    power = 0
+    while number > 0:
+        decimal += (number % 10) * (base ** power)
+        number //= 10
+        power += 1
+    return decimal
+
+def from_decimal(number, base):
+    result = 0
+    power = 0
+    while number > 0:
+        result += (number % base) * (10 ** power)
+        number //= base
+        power += 1
+    return result
+
+def add(base, number1, number2, result_base):
+    decimal1 = to_decimal(number1, base)
+    decimal2 = to_decimal(number2, base)
+    result_decimal = decimal1 + decimal2
+    result = from_decimal(result_decimal, result_base)
+    return result
+
+
+result = add(base, number1, number2, result_base)
+print("Результат сложения: ", result)
