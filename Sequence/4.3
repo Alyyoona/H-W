@@ -1,0 +1,116 @@
+class Sequence:
+    def __init__(self, seq):
+        self.seq = seq
+    def alphabet(self):
+        pass
+    def name(self):
+        pass
+    def lenght(self):
+        return len(self.seq)
+
+    def statistics(self):
+        statistics = {}
+        for symbol in self.seq:
+            if symbol in statistics:
+                statistics[symbol] += 1
+            else:
+                statistics[symbol] = 1
+        return statistics
+
+    def molmass(self):
+        pass
+
+class DNA(Sequence):
+    def alphabet(self):
+        return "ATCG"
+    def name(self):
+        return "DNA"
+
+    def complimentar(self):
+        complimentar = ""
+        for symbol in self.seq:
+            if symbol == "A":
+                complimentar += "T"
+            elif symbol == "T":
+                complimentar += "A"
+            elif symbol == "C":
+                complimentar += "G"
+            elif symbol == "G":
+                complimentar += "C"
+        return complimentar
+
+    def transcription(self):
+        RNA_seq = ""
+        for symbol in self.seq:
+            if symbol == "A":
+                RNA_seq += "U"
+            elif symbol == "T":
+                RNA_seq += "A"
+            elif symbol == "C":
+                RNA_seq += "G"
+            elif symbol == "G":
+                RNA_seq += "C"
+        return RNA_seq
+
+class DNA(Sequence):
+    def alphabet(self):
+        return "AUGC"
+
+    def name(self):
+        return "RNA"
+
+    def complimentar(self):
+        complimentar = ""
+        for символ in self.seq:
+            if symbol == "A":
+                complimentar += "U"
+            elif symbol == "U":
+                complimentar += "A"
+            elif symbol == "G":
+                complimentar += "C"
+            elif symbol == "C":
+                complimentar += "G"
+        return complimentar
+
+    def translation(self):
+        codons = {'AUA': 'I', 'AUC': 'I', 'AUU': 'I', 'AUG': 'M', 'ACA': 'T', 'ACC': 'T',
+            'ACG': 'T', 'ACU': 'T', 'AAC': 'N', 'AAU': 'N', 'AAA': 'K', 'AAG': 'K', 'AGC': 'S',
+            'AGU': 'S', 'AGA': 'R', 'AGG': 'R', 'CUA': 'L', 'CUC': 'L', 'CUG': 'L', 'CUU': 'L',
+            'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCU': 'P', 'CAC': 'H', 'CAU': 'H', 'CAA': 'Q',
+            'CAG': 'Q', 'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGU': 'R', 'GUA': 'V', 'GUC': 'V',
+            'GUG': 'V', 'GUU': 'V', 'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCU': 'A', 'GAC': 'D',
+            'GAU': 'D', 'GAA': 'E', 'GAG': 'E', 'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGU': 'G',
+            'UCA': 'S', 'UCC': 'S', 'UCG': 'S', 'UCU': 'S', 'UUC': 'F', 'UUU': 'F', 'UUA': 'L',
+            'UUG': 'L', 'UAC': 'Y', 'UAU': 'Y', 'UAA': 'Stop', 'UAG': 'Stop', 'UGC': 'C',
+            'UGU': 'C', 'UGA': 'Stop', 'UGG': 'W'}
+        protein = ""
+        for i in range(0, len(self.seq), 3):
+            codon = self.seq[i:i + 3]
+            if codon in codons:
+                amino_acid = codons[codon]
+                if amino_acid != "Stop":
+                    protein += amino_acid + " "
+                else:
+                    break
+        return protein.strip()
+
+DNA_seq = DNA("CAGCTAGCTAGCTTTGCTAGC")
+print(DNA_seq.alphabet())  
+print(DNA_seq.name())  
+print(DNA_seq.seq()) 
+print(DNA_seq.lenght())  
+print(DNA_seq.statistics())  
+print(DNA_seq.molmass())  
+
+RNA_seq = РНК("UAGCUAGCUAGCUAGC")
+print(RNA_seq.alphabet())  
+print(RNA_seq.name())  
+print(RNA_seq.seq())  
+print(RNA_seq.lenght()) 
+print(RNA_seq.statistics())  
+print(RNA_seq.molmassa())  
+
+print(DNA_seq.complimentar())  
+print(DNA_seq.transcription())  
+print(RNA_seq.complimentar())  
+print(RNA_seq.translation())  
