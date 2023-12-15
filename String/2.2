@@ -1,0 +1,19 @@
+'''Добавить к предыдущему заданию функцию с преобразованием всех символов в прописные и
+функцию с отражением (все заглавные становятся прописными и наоборот), минимально дублируя код.
+Использовать  функции стандартной библиотеки lower() и find() нельзя.'''
+
+from string import*
+
+text = input()
+def output(text):
+    TEXT = ''
+    for i in text:
+        if i in ascii_lowercase:
+            index = ascii_lowercase.index(i)
+            i = ascii_uppercase[index]
+        elif i in ascii_uppercase:
+            index = ascii_uppercase.index(i)
+            i = ascii_lowercase[index]
+        TEXT += i
+    print(TEXT)
+output(text)
