@@ -1,0 +1,17 @@
+'''
+Используя наборы символов из пакета string написать функцию, которая получает на вход
+строку и возвращает строку, в которой все буквы латинского алфавита из исходной строки
+преобразованы в заглавные символы. Использовать функции стандартной библиотеки upper() и find() нельзя.
+'''
+from string import*
+
+text = input()
+def output(text):
+    TEXT = ''
+    for i in text:
+        if i in ascii_lowercase:
+            index = ascii_lowercase.index(i)
+            i = ascii_uppercase[index]
+        TEXT += i
+    print(TEXT)
+output(text)
